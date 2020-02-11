@@ -21,3 +21,69 @@ int main(){
 }
 
 // Write definition of inputMatrix(),matrixMultiply() and showMatrix() here
+
+void inputMatrix(double A[][N])
+{
+	for(int i=0;i<N;i++)
+	{
+		cout << "Row " << i+1 << ": ";
+		for(int j=0;j<N;j++) 
+		cin >> A[i][j];
+	}
+}
+
+void findLocalMax(const double A[][N], bool B[][N])
+{
+	for(int i=0;i<N;i++)
+	{
+		for(int j=0;j<N;j++)
+		{
+			if(i==0)B[i][j]=0;
+			if(j==0)B[i][j]=0;
+			if(i== N-1 )B[i][j]=0;
+			if(j== N-1 )B[i][j]=0;
+			if(i>0 && i != N-1 ){
+				if(j>0 && j != N-1 ){
+					if(A[i][j]>=A[i-1][j]){
+						if(A[i][j]>=A[i+1][j]){
+							if(A[i][j]>=A[i][j-1]){
+								if(A[i][j]>=A[i][j+1]){
+									B[i][j]=1;}else{B[i][j]=0;}
+							}else{B[i][j]=0;}
+						}else{B[i][j]=0;}
+					}else{B[i][j]=0;}
+				}else{B[i][j]=0;}}
+		}
+	}
+}
+
+void showMatrix(const bool B[][N])
+{
+	for(int i=0;i<N;i++)
+	{
+		for(int j=0;j<N;j++)
+		{ 
+			cout << B[i][j] << " ";
+		}
+
+		cout << "\n";
+	}
+}
+
+/* if(i==1)B[i][j]=0;
+			if(j==1)B[i][j]=0;
+			if(i==N)B[i][j]=0;
+			if(j==N)B[i][j]=0;
+			if(i>1 && i != N){
+				if(j>1 && j != N){
+					if(A[i][j]>A[i-1][j]){
+						if(A[i][j]>A[i+1][j]){
+							if(A[i][j]>A[i][j-1]){
+								if(A[i][j]>A[i][j+1]){
+									B[i][j]=1;}else{B[i][j]=0;}
+							}else{B[i][j]=0;}
+						}else{B[i][j]=0;}
+					}else{B[i][j]=0;}
+				}else{B[i][j]=0;}}
+		}
+		*/
